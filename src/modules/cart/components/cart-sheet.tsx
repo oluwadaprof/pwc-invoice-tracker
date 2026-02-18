@@ -107,7 +107,7 @@ export const CartSheet = ({
                 <SheetHeader>
                     <SheetTitle className="flex items-center gap-2">
                         <Calculator className="h-5 w-5" />
-                        pwc-invoice-tracker
+                        VAT Calculator
                     </SheetTitle>
                 </SheetHeader>
 

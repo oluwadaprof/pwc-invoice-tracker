@@ -5,6 +5,7 @@ import { cn } from "@/src/lib/utils";
 import { BarChart3, ShoppingBag, Wifi } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ThemeSwitcher } from "@/src/primitives/theme-switcher";
+import { AddCustomProductDialog } from "../../products/components/add-custom-product-dialog";
 
 const NAV_ITEMS = [
     { href: "/", label: "Product Catalogue", icon: ShoppingBag },
@@ -14,8 +15,9 @@ const NAV_ITEMS = [
 type AppShellProps = {
     children: React.ReactNode;
     headerRight?: React.ReactNode;
+    categories?: string[];
 }
-export const AppShell = ({ children, headerRight }: AppShellProps) => {
+export const AppShell = ({ children, headerRight, categories }: AppShellProps) => {
     const { theme } = useTheme()
     const pathname = usePathname();
 
@@ -23,7 +25,7 @@ export const AppShell = ({ children, headerRight }: AppShellProps) => {
         <div className="min-h-screen bg-background">
             <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
                 <div className="container mx-auto px-4 py-3 max-w-7xl">
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center gap-4">
                         <div className="flex items-center gap-3 shrink-0">
                             {theme === "light" ? (
                                 <Image
@@ -69,6 +71,9 @@ export const AppShell = ({ children, headerRight }: AppShellProps) => {
                         </nav>
 
                         <div className="flex items-center gap-2 md:gap-3 flex-1 justify-end">
+                            {categories && categories.length > 0 && (
+                                <AddCustomProductDialog categories={categories} />
+                            )}
                             {headerRight}
                             <ThemeSwitcher />
                         </div>

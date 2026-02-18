@@ -16,8 +16,7 @@ import type {
     { label: "Dec 2024", value: "Dec-2024", startDate: "2024-12-01", endDate: "2024-12-31" },
   ];
   
-  const SALES_INVOICES_BY_PERIOD: Record<string, SalesInvoice[]> = {
-    "Q1-2025": [
+  const SALES_INVOICES_Q1_2025: SalesInvoice[] = [
       {
         id: "si-001",
         irn: "NRS-2025-INV-00291847",
@@ -247,8 +246,9 @@ import type {
         vatAmount: 337500,
         total: 7237500,
       },
-    ],
-    "Q4-2024": [
+  ];
+  
+  const SALES_INVOICES_Q4_2024: SalesInvoice[] = [
       {
         id: "si-q4-001",
         irn: "NRS-2024-INV-00198823",
@@ -305,11 +305,19 @@ import type {
         vatAmount: 262500,
         total: 3762500,
       },
-    ],
+  ];
+  
+  const SALES_INVOICES_BY_PERIOD: Record<string, SalesInvoice[]> = {
+    "Q1-2025": SALES_INVOICES_Q1_2025,
+    "Q4-2024": SALES_INVOICES_Q4_2024,
+    // Monthly breakdowns derived from quarterly data
+    "Jan-2025": SALES_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-01")),
+    "Feb-2025": SALES_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-02")),
+    "Mar-2025": SALES_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-03")),
+    "Dec-2024": SALES_INVOICES_Q4_2024.filter((i) => i.invoiceDate.startsWith("2024-12")),
   };
   
-  const PURCHASE_INVOICES_BY_PERIOD: Record<string, PurchaseInvoice[]> = {
-    "Q1-2025": [
+  const PURCHASE_INVOICES_Q1_2025: PurchaseInvoice[] = [
       {
         id: "pi-001",
         irn: "NRS-2025-INV-00187392",
@@ -582,8 +590,9 @@ import type {
         total: 4085000,
         overallClaimableStatus: "CLAIMABLE",
       },
-    ],
-    "Q4-2024": [
+  ];
+  
+  const PURCHASE_INVOICES_Q4_2024: PurchaseInvoice[] = [
       {
         id: "pi-q4-001",
         irn: "NRS-2024-INV-00155001",
@@ -645,7 +654,16 @@ import type {
         total: 2150000,
         overallClaimableStatus: "NOT_CLAIMABLE",
       },
-    ],
+  ];
+  
+  const PURCHASE_INVOICES_BY_PERIOD: Record<string, PurchaseInvoice[]> = {
+    "Q1-2025": PURCHASE_INVOICES_Q1_2025,
+    "Q4-2024": PURCHASE_INVOICES_Q4_2024,
+    // Monthly breakdowns derived from quarterly data
+    "Jan-2025": PURCHASE_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-01")),
+    "Feb-2025": PURCHASE_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-02")),
+    "Mar-2025": PURCHASE_INVOICES_Q1_2025.filter((i) => i.invoiceDate.startsWith("2025-03")),
+    "Dec-2024": PURCHASE_INVOICES_Q4_2024.filter((i) => i.invoiceDate.startsWith("2024-12")),
   };
   
   function computeSummary(

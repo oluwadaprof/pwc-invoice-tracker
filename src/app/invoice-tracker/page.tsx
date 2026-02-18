@@ -7,13 +7,13 @@ import {
     fetchVatSummary,
     fetchSalesInvoices,
     fetchPurchaseInvoices,
-} from "@/src/modules/vat/queries/invoices";
+} from "@/src/modules/invoice-tracker/queries/invoices";
 
-import { PeriodSelector } from "@/src/modules/vat/components/period-selector";
-import { VatSummaryCards } from "@/src/modules/vat/components/vat-summary-cards";
-import { SalesInvoiceTable } from "@/src/modules/vat/components/sales-invoice-table";
-import { PurchaseInvoiceTable } from "@/src/modules/vat/components/purchase-invoice-table";
-import { ExportButton } from "@/src/modules/vat/components/export-button";
+import { PeriodSelector } from "@/src/modules/invoice-tracker/components/period-selector";
+import { VatSummaryCards } from "@/src/modules/invoice-tracker/components/vat-summary-cards";
+import { SalesInvoiceTable } from "@/src/modules/invoice-tracker/components/sales-invoice-table";
+import { PurchaseInvoiceTable } from "@/src/modules/invoice-tracker/components/purchase-invoice-table";
+import { ExportButton } from "@/src/modules/invoice-tracker/components/export-button";
 import { AppShell } from "@/src/modules/layout/components/app-shell";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/primitives/ui/tabs";
@@ -99,8 +99,8 @@ export const VatCalculatorPage = () => {
 
                 {/* Invoice Tables */}
                 <Tabs defaultValue="sales" className="space-y-4">
-                    <div className="flex items-center justify-between">
-                        <TabsList className="bg-muted/50">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <TabsList className="bg-muted/50 w-full sm:w-auto">
                             <TabsTrigger value="sales" className="gap-2 text-xs sm:text-sm">
                                 <ReceiptText className="h-3.5 w-3.5" />
                                 Sales (AR)
